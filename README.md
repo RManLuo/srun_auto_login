@@ -25,11 +25,8 @@ pythonw auto_login.py
 nohup python3 auto_login.py 2>&1 &
 ```
 ## 通过bat注册windows开机自启
-1.首先，需要新建一个start.bat文件（用来运行脚本, 写完之后保存
-```shell script
-pythonw /绝对路径/auto_login.py
-```
-2.点击开始--所有程序--启动--右击--打开，将已经保存的.bat文件复制到该目录（C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup）下，可能杀毒软件会阻止，选择允许，然后重启电脑即可。
+1.将auto_login.py 改名成auto_login.pyw，并右键创建快捷方式
+2.点击开始--所有程序--启动--右击--打开，将已快捷方式复制到该目录（C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup）下，可能杀毒软件会阻止，选择允许，然后重启电脑即可。
 ## Author
 
 👤 **Raymond Luo**
