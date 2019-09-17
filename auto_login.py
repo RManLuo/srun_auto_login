@@ -64,10 +64,13 @@ class AutoLogin(object):
         检查网络是否畅通
         :return: Ture为畅通，False为不畅通。
         '''
-        req = requests.get('http://www.baidu.com', timeout=5)
-        if req.status_code == 200 and 'srun' not in req.url:
-            return True
-        else:
+        try:
+            req = requests.get('http://www.baidu.com', timeout=5)
+            if 'baidu' not in req.text:
+                return True
+            else:
+                return False
+        except:
             return False
 
     def _login_utsz(self):
