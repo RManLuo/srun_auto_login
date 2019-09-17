@@ -123,6 +123,7 @@ class AutoLogin(object):
                 self._login_utsz()
             else:
                 self._login_hitsz()
+            time.sleep(5)
             status = self._check_network()
             if status:
                 self.logger.info("Loging success")
