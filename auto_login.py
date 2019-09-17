@@ -143,7 +143,7 @@ class AutoLogin(object):
             if self._check_network():
                 self.logger.info("Network is good")
             else:
-                self.logger.info("Network is disconnected. Try logging now.")
+                self.logger.info("Network is disconnected. Try login now.")
                 self._login()  # 重新登录
             time.sleep(config.check_time)
 
