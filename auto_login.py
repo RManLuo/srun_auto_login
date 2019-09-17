@@ -66,7 +66,7 @@ class AutoLogin(object):
         '''
         try:
             req = requests.get('http://www.baidu.com', timeout=5)
-            if 'baidu' not in req.text:
+            if 'baidu' in req.text:
                 return True
             else:
                 return False
