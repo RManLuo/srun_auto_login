@@ -11,7 +11,6 @@ import os
 import config
 import time
 import logging
-import subprocess
 import platform
 import requests
 from selenium import webdriver
@@ -65,11 +64,11 @@ class AutoLogin(object):
         检查网络是否畅通
         :return: Ture为畅通，False为不畅通。
         '''
-        exit_code = subprocess.call("ping www.baidu.com", shell=True)
-        if exit_code:
-            return False
-        else:
+        req = requests.get('http://www.baidu.com', timeout=5)
+        if req.status_code == 200 and 'srun' not in req.url:
             return True
+        else:
+            return False
 
     def _login_utsz(self):
         '''
@@ -133,19 +132,16 @@ class AutoLogin(object):
             raise Exception("Out of trying times")
 
     def start(self):
-        start_time = time.time()
         self.logger.info("Start watching network status")
-        first = True
         while True:
-            if time.time() - start_time > config.check_time or first:  # check是否掉线
-                first = False  # 只有第一次
-                start_time = time.time()  # 更新计时器
-                self.logger.info("Checking network")
-                if self._check_network():
-                    self.logger.info("Network is good")
-                else:
-                    self.logger.info("Network is disconnected. Try logging now.")
-                    self._login()  # 重新登录
+            # check是否掉线
+            self.logger.info("Checking network")
+            if self._check_network():
+                self.logger.info("Network is good")
+            else:
+                self.logger.info("Network is disconnected. Try logging now.")
+                self._login()  # 重新登录
+            time.sleep(config.check_time)
 
 
 if __name__ == "__main__":
