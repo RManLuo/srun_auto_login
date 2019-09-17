@@ -10,6 +10,7 @@
 ## Requirements
 
 ```sh
+requests
 selenium >= 3.141.0
 ```
 
